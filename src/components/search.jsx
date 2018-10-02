@@ -6,7 +6,7 @@ import PouchDB from 'pouchdb'
 import Alert from 'react-s-alert'
 import 'react-s-alert/dist/s-alert-default.css'
 import 'react-s-alert/dist/s-alert-css-effects/jelly.css'
-
+import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {productsList} from '../actions/'
 
@@ -103,6 +103,10 @@ class Search extends Component {
 
     })
   }
+  deleteCookie () {
+    document.cookie = 'AuthSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;'
+    this.props.history.push('/signup')
+  }
 
   render () {
     return (
@@ -124,7 +128,7 @@ class Search extends Component {
                 <a id='menuLink1' className='pure-menu8link'>{sessionStorage.getItem('user')}</a>
                 <ul className='pure-menu-children'>
                   <li className='pure-menu-item'><a className='pure-menu-link'>Settings</a></li>
-                  <li className='pure-menu-item'><a className='pure-menu-link'>Logout</a></li>
+                  <li onClick={() => { this.deleteCookie() }} className='pure-menu-item'>Logout</li>
                 </ul>
               </li>
             </ul>
@@ -152,4 +156,5 @@ const mapDispatch = (dispatch) => {
 }
 
 // Connect them:
-export default connect(mapState, mapDispatch)(Search)
+// export default connect(mapState, mapDispatch)(Search)
+export default withRouter(connect(mapState, mapDispatch)(Search))

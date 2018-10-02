@@ -5,11 +5,74 @@
    768-480     - tablet 
    480-less    - phone landscape & smaller
 --------------------------------------------*/
+<<<<<<< HEAD
 @media all and (min-width: 1024px) and (max-width: 1280px) { }
  
 @media all and (min-width: 768px) and (max-width: 1024px) { }
  
 @media all and (min-width: 480px) and (max-width: 768px) { }
+=======
+@media all and (min-width: 1024px) and (max-width: 1280px) {
+    .container_right { 
+        margin-left: 80;
+    }
+    .header_box{
+        min-width: 153px !important;
+    }
+    .products_table, .services_table {
+        max-width: 888px; 
+    }
+    .header .expandButton>svg{
+        display: none;
+     }
+ }
+ 
+@media all and (min-width: 768px) and (max-width: 1024px) { 
+    .container_right { 
+        margin-left: 100;
+    }
+    .header_box{
+        min-width: 98.984px !important;
+    }
+    .products_table, .services_table {
+        max-width: 750px; 
+    }
+    .rbc-calendar, .toolbar{
+        width: 80vw;
+    }
+    .header .expandButton div{
+        width: 25px;
+    }
+    .header .expandButton>svg{
+       display: none;
+    }
+}
+ 
+@media all and (min-width: 480px) and (max-width: 768px) {
+    .container_right, .open_register_container { 
+        margin-left: 80;
+    }
+    .header_box{
+        min-width: 80px!important;
+    }
+    .products_table, .services_table {
+        max-width: 650px; 
+    }
+    .rbc-calendar, .toolbar{
+        width: 75vw;
+    }
+    .rbc-toolbar {
+        display: flex;
+        flex-direction: column;
+    }
+    .header .expandButton div{
+        width: 25px;
+    }
+    .header .expandButton>svg{
+        display: none;
+     }
+ }
+>>>>>>> Dist Commit
  
 @media all and (max-width: 480px) {
     .header .expandButton {

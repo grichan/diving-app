@@ -104,7 +104,7 @@ onCloseModal = () => {
         </div>
       )
     }
-    const data01 = [{name: 'Income', value: 400}, {name: 'Expences', value: 189}]
+    const data01 = [{name: 'This Week', value: 35}, {name: 'Last Week', value: 10}]
 
     const data02 = [{name: 'Bulgarian', value: 2400}, {name: 'Russian', value: 4567},
       {name: 'English', value: 1398} ]
@@ -162,14 +162,11 @@ onCloseModal = () => {
                     outerRadius={80} fill='#8884d8' label />
                   <Tooltip />
                 </PieChart>
-                <h1>Clients</h1>
+                <h1>Weekly Clients</h1>
+                <p>Clients this week and last week</p>
               </div>
               <div className='' />
-              <div className='dashboard_box'>
-                <h1>Tank Fills</h1>
-                <img src='' alt='asdasd' />
-              BOX
-              </div>
+            
             </div>
           </Fade >
         </div>

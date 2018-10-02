@@ -8,6 +8,11 @@ import {connect} from 'react-redux'
 import {addCalendarEvents, addEvent} from '../../actions'
 
 import PouchDB from 'pouchdb'
+<<<<<<< HEAD
+=======
+import {FaEdit, FaPlus} from 'react-icons/lib/fa'
+import Fade from 'react-reveal/Fade'
+>>>>>>> Dist Commit
 
 import moment from 'moment'
 import BigCalendar from 'react-big-calendar'
@@ -180,7 +185,8 @@ class Calendar extends Component {
         <Header isauth />
         <div className='container_right'>
           <Search />
-          <div className='right_header'>
+          <Fade>
+      <div className='right_header'>
         <h1>Calendar</h1>
       </div>
           <div className='dashboard_container'>
@@ -235,6 +241,7 @@ class Calendar extends Component {
           </div>
 
           </div>
+          </Fade>
         </div>
       </div>
     )

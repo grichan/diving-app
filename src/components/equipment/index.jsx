@@ -7,6 +7,7 @@ import Header from '../header'
 
 import {connect} from 'react-redux'
 import {updateStorageArray} from '../../actions'
+import Fade from 'react-reveal/Fade'
 
 // 3d Party
 import PouchDB from 'pouchdb'
@@ -480,6 +481,7 @@ onCloseEdditEquipment = (arr) => {
         <Header isauth />
         <div className='container_right'>
           <Search />
+          <Fade>
           <div className='right_header'>
         <h1>Equipment</h1>
       </div>
@@ -574,6 +576,7 @@ onCloseEdditEquipment = (arr) => {
           </div>
  
           </div>
+          </Fade>
         </div>
       </div>
     )

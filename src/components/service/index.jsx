@@ -15,6 +15,7 @@ import Modal from 'react-responsive-modal';
 import {FaCube} from 'react-icons/lib/fa'
 import ReactTable from 'react-table'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
+import Fade from 'react-reveal/Fade'
 // Setup the localizer by providing the moment (or globalize) Object
 // to the correct localizer.
 BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
@@ -472,6 +473,7 @@ onCloseEdditService = (arr) => {
           <div>
           <button className='edditProducts' id={d.id} onClick={(e)=> this.onOpenModalEdditService(e)}>Edit </button>
         </div>
+<<<<<<< HEAD
         )
       }]
     return (
@@ -560,6 +562,128 @@ onCloseEdditService = (arr) => {
                       </div>  
             </div>
             <div className='storage_conents'>
+=======
+      )
+    }, {
+      Header: 'Type',
+      accessor: 'name'
+    }, {
+      Header: 'Serial',
+      accessor: 'serial'
+    }, {
+      Header: 'Tech',
+      accessor: 'color'
+    }, {
+      Header: 'Price',
+      accessor: 'size'
+    }, {
+      Header: 'Qty',
+      accessor: 'qty'
+    }, {
+      Header: 'Discripton',
+      id: 'discripton',
+      accessor: d => d.disc
+    }, {
+      Header: '',
+      id: 'edit',
+      accessor: d => ( 
+        <div>
+        <button className='edditProducts' id={d.id} onClick={(e)=> this.onOpenModalEdditService(e)}>Edit </button>
+      </div>
+      )
+    }]
+  return (
+    <div className='component_container'>
+      <Header isauth />
+      <div className='container_right'>
+        <Search />
+        <Fade>
+        <div className='right_header'>
+      <h1>Service</h1>
+    </div>
+        <div className='dashboard_container'>
+        <Modal classNames='modal_add_products'  open={this.state.open} onClose={this.onCloseModal} center>
+        <div className='modal_inner_box'>
+          <h1>Add service</h1>
+          ServiceItem Name<input autoFocus type="text" value={this.state.serviceName} 
+            onChange={(e)=>{this.setState({serviceName: e.target.value})}}/>
+          Description: <textarea rows="4" cols="50" type="text" value={this.state.serviceDiscription} 
+            onChange={(e)=>{this.setState({serviceDiscription: e.target.value})}}/>
+          <button type='submit' id='addEvent' onClick={(e)=>{this.addServiceItemClick(e)}}>Add</button>
+          </div>
+      </Modal>
+
+      <Modal classNames='modal_add_products'  open={this.state.openEdit} onClose={this.onCloseModalEdit} center>
+        <div className='modal_inner_box'>
+          <h1>Edit service</h1>
+          ServiceItem Name<input autoFocus type="text" value={this.state.serviceName} 
+            onChange={(e)=>{this.setState({serviceName: e.target.value})}}/>
+          Description: <textarea rows="4" cols="50" type="text" value={this.state.serviceDiscription} 
+            onChange={(e)=>{this.setState({serviceDiscription: e.target.value})}}/>
+          <div className='button_set'>
+            <button type='submit' id='addEvent' onClick={(e)=>{this.deleteServiceToServiceItem(e)}}>Delete</button>
+            <button type='submit' id='addEvent' onClick={(e)=>{this.updateServiceItemClick(e)}}>Save</button>
+          </div>
+          
+          </div>
+      </Modal>  
+
+      <Modal classNames='modal_add_products'  open={this.state.openAddService} onClose={this.onCloseAddService} center>
+        <div className='modal_inner_box'>
+          <h1>Add Service</h1>
+          Service Name<input autoFocus type="text" value={this.state.serviceName} 
+            onChange={(e)=>{this.setState({serviceName: e.target.value})}}/>
+          Quantity <input  type="number" value={this.state.serviceQty} 
+            onChange={(e)=>{this.setState({serviceQty: e.target.value})}}/>
+          Size<input  type="text" value={this.state.serviceSize} 
+            onChange={(e)=>{this.setState({serviceSize: e.target.value})}}/>
+          Color<input  type="text" value={this.state.serviceColor} 
+            onChange={(e)=>{this.setState({serviceColor: e.target.value})}}/>
+          Serial Number<input  type="text" value={this.state.serviceSerial} 
+            onChange={(e)=>{this.setState({serviceSerial: e.target.value})}}/>  
+          Description: <textarea rows="4" cols="50" type="text" value={this.state.serviceDiscription} 
+            onChange={(e)=>{this.setState({serviceDiscription: e.target.value})}}/>
+          <button type='submit' id='addEvent' onClick={(e)=>{this.addServiceToServiceItem(e)}}>Add</button>
+          </div>
+      </Modal>
+
+              <Modal classNames='modal_edit_products'  open={this.state.openEdditService} onClose={this.onCloseEdditService} center>
+        <div className='modal_inner_box'>
+          <h1>Edit Service</h1>
+          Service Name<input autoFocus type="text" value={this.state.serviceName} 
+            onChange={(e)=>{this.setState({serviceName: e.target.value})}}/>
+          Quantity <input  type="number" value={this.state.serviceQty} 
+            onChange={(e)=>{this.setState({serviceQty: e.target.value})}}/>
+          Size<input  type="text" value={this.state.serviceSize} 
+            onChange={(e)=>{this.setState({serviceSize: e.target.value})}}/>
+          Color<input  type="text" value={this.state.serviceColor} 
+            onChange={(e)=>{this.setState({serviceColor: e.target.value})}}/>
+          Serial Number<input  type="text" value={this.state.serviceSerial} 
+            onChange={(e)=>{this.setState({serviceSerial: e.target.value})}}/>  
+          Description: <textarea rows="4" cols="50" type="text" value={this.state.serviceDiscription} 
+            onChange={(e)=>{this.setState({serviceDiscription: e.target.value})}}/>
+          <button type='submit' id='delete' onClick={(e)=>{this.deleteServiceItemClick(e)}}>Delete</button>
+          <button type='submit' id='addEvent' onClick={(e)=>{this.updateServiceToServiceItem(e)}}>Save</button>
+          </div>
+      </Modal>  
+
+
+        <div className='service_box'>
+          <div className='service_control'>
+          <a onClick={this.onOpenModal}>
+                  <div className='service'>
+                      <FaWrench size='100' />
+                      <p>Service Equipment</p>
+                    </div>
+                  </a>
+                    <div className='existing_service'>
+                      <p>Exisiting Service ServiceItems:</p>
+                      {this.displayServiceItemNames()}
+                    </div>  
+          </div>
+          <div className='service_conents'>
+          <div className='upper_service_contents'>
+>>>>>>> Dist Commit
             <h2>Sotrage Service</h2>
             <button onClick={this.onOpenModalService}>Add Service to storage</button>
               <ReactTable
@@ -574,6 +698,11 @@ onCloseEdditService = (arr) => {
  
           </div>
         </div>
+<<<<<<< HEAD
+=======
+        </div>
+        </Fade>
+>>>>>>> Dist Commit
       </div>
     )
   }

@@ -45,12 +45,22 @@ export default class Header extends Component {
             </div>
             {this.state.retailExpand ? <FaArrowDown size='15' color='#ddd' /> : <FaArrowRight size='15' color='#eee' />}
           </button>
+<<<<<<< HEAD
           <Link to={{pathname: '/retail', isauth: true}} className={`submenu ${this.state.retailExpand ? 'active' : ''}`}>POS</Link>
           <Link to={{pathname: '/retail/history', isauth: true}} className={`submenu ${this.state.retailExpand ? 'active' : ''}`}>History</Link>
           <Link to={{pathname: '/retail/products', isauth: true}} className={`submenu ${this.state.retailExpand ? 'active' : ''}`}>Products</Link>
           <Link to={{pathname: '/retail/courses', isauth: true}} className={`submenu ${this.state.retailExpand ? 'active' : ''}`}>Courses</Link>
           <Link to={{pathname: '/retail/customers', isauth: true}} className={`submenu ${this.state.retailExpand ? 'active' : ''}`}>Customers</Link>
           <button className='expandButton' onClick={(e) => { this.setState({calendarExpand: !this.state.calendarExpand}) }} >
+=======
+          <Link to={{pathname: '/retail', isauth: true}} className={`submenu ${this.props.global.retail ? 'active' : ''}`}>Sales</Link>
+          <Link to={{pathname: '/retail/history', isauth: true}} className={`submenu ${this.props.global.retail ? 'active' : ''}`}>History</Link>
+          <Link to={{pathname: '/retail/products', isauth: true}} className={`submenu ${this.props.global.retail ? 'active' : ''}`}>Products</Link>
+          <Link to={{pathname: '/retail/courses', isauth: true}} className={`submenu ${this.props.global.retail ? 'active' : ''}`}>Courses</Link>
+          <Link to={{pathname: '/retail/customers', isauth: true}} className={`submenu ${this.props.global.retail ? 'active' : ''}`}>Customers</Link>
+          {/* CALENDAR ________________ */}
+          <button className='expandButton' onClick={(e) => { this.props.dispatchExtended({calendar: !this.props.global.calendar}) }} >
+>>>>>>> Dist Commit
             <div>
               <FaCalendarO size='20' color='#2899F3' /> Calendar
             </div>
@@ -60,7 +70,7 @@ export default class Header extends Component {
           {/* //  */}
           <button className='expandButton' onClick={(e) => { this.setState({equipmentexpand: !this.state.equipmentexpand}) }} >
             <div>
-              <FaCubes size='20' color='#2899F3' /> Equipment
+              <FaCubes size='20' color='#2899F3' /> <text>Equipment</text>
             </div>
             {this.state.equipmentexpand ? <FaArrowDown size='15' color='#ddd' /> : <FaArrowRight size='15' color='#eee' />}
           </button>
@@ -76,7 +86,7 @@ export default class Header extends Component {
           <Link to={{pathname: '/service', isauth: true}} className={`submenu ${this.state.repairExpand ? 'active' : ''}`}>Service</Link>
           <button className='expandButton' onClick={(e) => { this.setState({staffExpand: !this.state.staffExpand}) }} >
             <div>
-              <FaGroup size='20' color='#2899F3' /> Staff
+              <FaGroup size='20' color='#2899F3' /> <text>Staff</text>
             </div>
             {this.state.staffExpand ? <FaArrowDown size='15' color='#ddd' /> : <FaArrowRight size='15' color='#eee' />}
           </button>

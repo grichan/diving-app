@@ -46,7 +46,7 @@ export default class Landing extends Component {
                 <Fade>
                   <div className='cover_inner_elements'>
                     <h1>Your Managment Hub For Diving </h1>
-                    <p>All the esential tools needed for running a Dive Shop<br />Available offline and online.</p>
+                    <p>All the esential tools needed for running a Dive Shop<br /></p>
                     <div className='cover_buttons'>
                       <Link to='/signup'> <button className='pure-button'>Sign Up</button></Link>
                       <a href={MockupPC} download='proposed_file_name'><button className='pure-button download'>Download</button></a>
@@ -62,7 +62,9 @@ export default class Landing extends Component {
             <section className='pure-g features_header'>
               <img className='features_image' src={MockupPC} alt='' />
               <div className='features_paragraph'>
-           Featues Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, at repudiandae. Saepe eaque, voluptate assumenda quidem quasi delectus veniam quia quis magnam, aspernatur quod veritatis. Tempora inventore omnis commodi dolorem.
+              Running a diving shop have never been easier. Clear out the clutter at your desk and keep all the necisary documents online.
+                <br />
+              Use it on your own divice. All the necisary features for running a diving shop are already prepeared for you. Build in a sleek design using the newest technolegies available.
               </div>
             </section>
           </div>
@@ -72,36 +74,32 @@ export default class Landing extends Component {
             <div className='pure-g features_app' id='app'>
               <div className='feature_box'>
                 <IoAndroidAddCircle size={100} />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio earum delectus animi, rem, et autem quis debitis asperiores esse, vel veniam iure similique iusto. Reiciendis distinctio nobis eos sit inventore.</p>
-            a
+                <p>Add your own data with ease.</p>
               </div>
               <div className='feature_box'>
                 <IoAndroidCloud size={100} />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio earum delectus animi, rem, et autem quis debitis asperiores esse, vel veniam iure similique iusto. Reiciendis distinctio nobis eos sit inventore.</p>
-            b
+                <p>Keep all your data in the cloud. Access it at any time. </p>
               </div>
               <div className='feature_box'>
                 <IoAndroidAddCircle size={100} />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio earum delectus animi, rem, et autem quis debitis asperiores esse, vel veniam iure similique iusto. Reiciendis distinctio nobis eos sit inventore.</p>
-            c
+                <p>All your information at one place. Access it at any time.</p>
+
               </div>
             </div>
 
             <div className='pure-g features_app'>
               <div className='feature_box'>
                 <IoAndroidPerson size={100} />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio earum delectus animi, rem, et autem quis debitis asperiores esse, vel veniam iure similique iusto. Reiciendis distinctio nobis eos sit inventore.</p>
-            a
+                <p>Manage your staff with our staff section build in.</p>
+
               </div>
               <div className='feature_box'>
                 <IoAndroidList size={100} />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio earum delectus animi, rem, et autem quis debitis asperiores esse, vel veniam iure similique iusto. Reiciendis distinctio nobis eos sit inventore.</p>
-            b
+                <p>Offline support - no need to be online at all times.</p>
               </div>
               <div className='feature_box'>
                 <IoCalendar size={100} />
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio earum delectus animi, rem, et autem quis debitis asperiores esse, vel veniam iure similique iusto. Reiciendis distinctio nobis eos sit inventore.</p>
-            c
+                <p>Calendars for adding events, trips, activities. Separate calendar for managing your staff's working hours</p>
               </div>
             </div>
           </div>
@@ -114,7 +112,6 @@ export default class Landing extends Component {
               <h5>$0 / Month</h5>
               <ul>
                 <li>Early Development Stage</li>
-                <li>No Offline Support</li>
                 <li>Bugs Crawling Inside</li>
               </ul>
               <button className='pure-button'>Purchase</button>

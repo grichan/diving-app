@@ -464,7 +464,7 @@ calculateSubtotal() {
                 }
                 let discountedValue = (parseFloat(item.discount) / 100) * price
                 price = price - discountedValue
-                productSub = sub + (parseFloat(price) * parseFloat(item.qtyToBuy))
+                productSub = productSub + (parseFloat(price) * parseFloat(item.qtyToBuy))
             }
         }
         if (this.props.pending_services) {
@@ -653,7 +653,10 @@ render() {
                     onChange={this.changeQty.bind(this)} placeholder='Qty' min='1' max={d.qty} required />
               </div>
           )
-        }, {
+        },{
+            Header: 'price',
+            accessor: 'price' // String-based value accessors!
+          }, {
             Header: 'Discount',
             id: 'discount',
             accessor: d => (
@@ -675,10 +678,7 @@ render() {
           Header: 'discripton',
           id: 'discripton',
           accessor: d => d.discription
-        }, {
-          Header: 'price',
-          accessor: 'price' // String-based value accessors!
-        }, {
+        },  {
           Header: '',
           id: 'edit',
           accessor: d => ( 
@@ -707,18 +707,6 @@ render() {
               Header: 'description',
               accessor: 'description'
             }, {
-                Header: 'Discount',
-                id: 'discount',
-                accessor: d => (
-                    <div>
-                        <input type="number" id='Service' name={d._id} value={d.discount} 
-                        onChange={this.changeDiscount.bind(this)} placeholder='Discount' min='0' max='100' required />%
-                    </div>
-                )
-              }, {
-              Header: 'price',
-              accessor: 'price' // String-based value accessors!
-            }, {
                 Header: 'qty',
                 id: 'qtyToBuy',
                 accessor: d => (
@@ -728,6 +716,18 @@ render() {
                     </div>
                 )
               }, {
+              Header: 'price',
+              accessor: 'price' // String-based value accessors!
+            }, {
+                Header: 'Discount',
+                id: 'discount',
+                accessor: d => (
+                    <div>
+                        <input type="number" id='Service' name={d._id} value={d.discount} 
+                        onChange={this.changeDiscount.bind(this)} placeholder='Discount' min='0' max='100' required />%
+                    </div>
+                )
+              },{
               Header: 'remove',
               id: 'edit',
               accessor: d => ( 

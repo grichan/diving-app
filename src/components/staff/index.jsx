@@ -14,6 +14,7 @@ import moment from 'moment'
 import BigCalendar from 'react-big-calendar'
 import Modal from 'react-responsive-modal';
 // import {FaInfo} from 'react-icons/lib/fa'
+import Fade from 'react-reveal/Fade'
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 // Setup the localizer by providing the moment (or globalize) Object
@@ -21,6 +22,11 @@ import 'react-big-calendar/lib/css/react-big-calendar.css'
 BigCalendar.momentLocalizer(moment) // or globalizeLocalizer
 
 
+class Welcome extends React.Component {
+  render() {
+    return <h1>Hello, {this.props.name}</h1>;
+  }
+}
 
 class Staff extends Component {
   constructor (props) {
@@ -181,6 +187,7 @@ class Staff extends Component {
         <Header isauth />
         <div className='container_right'>
           <Search />
+          <Fade>
           <div className='right_header'>
         <h1>Staff</h1>
       </div>
@@ -231,6 +238,7 @@ class Staff extends Component {
             />
             </div>
           </div>
+          </Fade>
         </div>
       </div>
     )

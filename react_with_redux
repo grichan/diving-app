@@ -1,0 +1,39 @@
+import React, { Component } from 'react'
+
+import {connect} from 'react-redux'
+import {addProduct} from '../../actions'
+
+class SelectiveSearch extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+
+    }
+  };
+
+  render () {
+    return (
+      <div />
+    )
+  }
+};
+// Maps `state` to `props`:
+// These will be added as props to the component.
+function mapState (state) {
+  return {
+    products: state.products
+
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    dispatchAddProduct: (productsState, arr) => {
+      dispatch(addProduct(productsState, arr))
+    }
+  }
+}
+
+// Connect them:
+export default connect(mapState, mapDispatch)(SelectiveSearch)

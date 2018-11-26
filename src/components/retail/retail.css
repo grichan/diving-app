@@ -1,0 +1,431 @@
+
+
+
+
+
+/* ############################## SALES REGISTER ############################## */
+
+.item_toolbox {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-around;
+    height: 3vh;
+    flex-flow: wrap;
+    font-size: calc(12px + 1vw);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 2vh 0;
+}
+
+.item_toolbox input,.item_toolbox  select { 
+}
+
+.sugestions {
+    background: #fff;
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.sugestions_box li{
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.sugestions_box {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    z-index: 99999;
+}
+
+
+.selective_search { 
+}
+
+
+.products_table {
+    width: inherit;
+    margin: 1vw;    
+}
+
+.products_container .ReactTable {
+    width: 80vw!important;
+}
+
+.button_group {
+    font-size: calc(12px + 0.5vw);
+
+}
+.item_toolbox button {
+    height: 100%;
+    margin: 0 1vw ;
+
+}
+
+.open_register_container .pos, .open_register_container .daily_actions {
+    background: #fff;
+    margin: 2vw;
+    margin-bottom: 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.pending_products {
+    display: flex;
+    flex-direction: column;
+}
+
+.pending_products h2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: Roboto;
+    font-size: calc(12px + 2vw);
+    align-items: center;
+}
+.pending_products h2 button{
+    font-size: calc(12px + 1.2vw);
+}
+.pending_products p {
+    font-size: calc(12px + 0.3vw);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-transform: uppercase;
+    color: rgb(90, 90, 90);
+    font-weight: 400px;
+}
+.pending_products .card_payment{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.pending_products .pure-table thead th {
+    color: #FAFAFA;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #333333;
+    font-weight: 300;
+
+}
+.pending_products .pure-table th {
+    background: #fff;
+
+}
+.pending_products .pure-table caption {
+    text-decoration:none;
+    font-family: Roboto;
+
+}
+
+.pending_products .pure-checkbox {
+
+}
+.payment {
+    display:flex;
+    flex-direction: column;
+}
+ .payment .recived {
+     display: flex;
+     align-content: flex-start;
+     justify-content: center;
+     flex-direction: row;
+ }
+
+ .recived input,  .recived p {
+    max-height: 2vh;
+    margin: 0;     
+ }
+ .recived input {
+     max-width: 5vw;
+     min-width: 40px;
+ }
+
+/* MODAL */
+
+.styles_modal__gNwvD{
+    min-width: 70%;
+}
+
+.modal_form {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.modal_form_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.modal_form_box input {
+    font-size: calc(12px + 1vw);
+ }
+
+ .modal_form_box h2{
+    text-align: center;
+    font-family: Roboto;
+    color: #009688;
+}
+
+.modal_form_box button{
+    align-self: center;
+    background: #f1f1f1;
+    margin: 0.3vw;
+    max-width: 9vw;
+    min-width: 5vw;
+    border-radius: 10PX;
+    border: none;
+    font-family: Roboto;
+    font-family:calc(12px + 1vw) ;
+}
+
+.daily_actions {
+    display: flex;
+    flex-direction: column;
+}
+
+.button_box button{
+    padding: 0.2vw;
+    border: none;
+    background: rgb(241, 241, 241);
+    color: #292F36;
+    border: #33333332 1px solid;
+    border-radius: 5px;
+}
+
+.customers {
+    display: flex;
+    flex-direction: column;
+}
+.customer {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 3vw;
+}
+.customer button {
+    padding: 0.2vw;
+    border: none;
+    background: rgb(241, 241, 241);
+    color: #292F36;
+    border: #33333332 1px solid;
+    border-radius: 5px;
+    max-height: 25px;
+}
+.customer h4 {
+    font-weight: 300;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+.pending_products h3 {
+    font-family: Roboto;
+    border-bottom: 0.5px solid rgba(41, 47, 54, 0.582);
+    color: #3581B8;
+    margin: 1vh 0;
+}
+
+
+
+
+/* ### BUTTONS ############################## */
+
+
+
+#button_finalize {
+    color: #FAFAFA;
+    background: #D92121;
+    background-position: center;
+    transition: background 0.8s;
+}
+
+#button_finalize:hover {
+    background: #f62121 
+    radial-gradient(circle, transparent 1%, #f62121 1%) 
+    center/15000%;
+}
+#button_finalize:active {
+    background-color: rgb(17, 203, 57);
+    background-size: 100%;
+    transition: background 0s;
+  }
+
+
+/* ############################## HISTORY ############################## */
+
+.history {
+    display: flex;
+}
+
+
+.charts_box {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: #fff;
+    margin: 0 2vw;
+    padding: 2vw;
+    margin-bottom: 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    
+
+}
+
+.charts_box .sold_chart,
+.charts_box .spent_chart {
+    display: flex;
+    flex-direction: row;
+    flex:1;
+    justify-content: center;
+}
+.charts_box .sold_chart 
+.recharts-surface {
+    flex: 1;
+}
+
+.history_box {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: #fff;
+    margin: 2vw;
+
+    margin-bottom: 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.history_box .history_table .pure-table {
+    background: #fff;
+    flex:1;
+}
+.history_box .history_table .pure-table {
+    width: 100%;
+}
+
+/* ############################## MODAL ############################## */
+
+.pure-form {
+    display:flex;
+    justify-content: center;
+    width: 70%;
+}
+
+#modal_group, .pure-form   {
+    width: 100%;
+}
+
+#modal_group {
+    display:flex;
+    justify-content: center;
+    width: 50%;
+}
+
+#modal_group input  {
+    flex-grow: 1;
+}
+
+
+#modal_group textarea{
+    width: 100%;
+    height:  10vh;
+    resize: none;
+}
+/* ############################## MODAL CUSTOMER ############################## */
+
+.custumer_modal_box {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.right_content .products_container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.products_container .controls {
+    display: flex;
+    justify-content: baseline;
+    align-content: center;
+    flex-direction: row;
+    padding: 1vh;
+    align-self: baseline;
+}
+.products_container .controls button {
+    font-size: calc(12px + 0.2vw);
+    text-transform: capitalize;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #CFCFCD;
+    border-radius: 5px;
+    padding: 0.5vw 1vw;
+    color: rgb(255, 255, 255);
+    border:none;
+    text-transform: uppercase;
+}
+
+.products_container .products_table {
+    display: flex;
+    justify-content: center;
+}
+.products_container .edditProducts {
+    font-size: calc(12px + 0.1vw);
+    text-transform: capitalize;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #CFCFCD;
+    border-radius: 5px;
+    padding: 0.5vw 1vw;
+    color: rgb(255, 255, 255);
+    border:none;
+    text-transform: uppercase;
+}
+
+
+.daily_orders {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background: #fff;
+    margin: 1vw;
+    margin-bottom: 0;
+    border: solid 4px #fff;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    padding: calc(5px + 1vw);
+}
+
+.daily_order {
+
+}
+
+.daily_order .daily_order_box {
+    display: flex;
+    flex-direction: column;
+}
+
+.daily_order .daily_order_box a .title {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+.daily_order .daily_order_box a .title li {
+    flex: 1;
+    justify-content: space-between;
+}
+
+.daily_order .daily_order_box .discription {
+    display: none;
+}
+/* ############################## Products  ############################## */
+

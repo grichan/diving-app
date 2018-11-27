@@ -148,22 +148,22 @@ class SelectiveSearch extends Component {
 
   addProductToPending (e) {
     console.log(this.props.products_pending)
-    let temp = this.props.products_pending.filter(item => item._id === e)
+    let temp = this.props.products_pending.filter(item => item._id == e)
     console.log(temp.length)
     if (this.props.products_pending) {
       if (temp.length <= 0) {
         console.log(e)
-        let arr = this.props.products.filter(item => item._id === e)
+        let arr = this.props.products.filter(item => item._id == e)
         this.props.dispatchToPendingProducts(this.props.products_pending, arr[0])
         this.setState({search: '', suggestions: []})
         this.refs.search.focus()
-        console.log(arr)
+        console.log('to be added:', arr)
       } else { this.refs.search.focus() }
     }
   }
   addServiceToPending (e) {
     console.log(this.props.services_pending)
-    let temp = this.props.services_pending.filter(item => item._id === e)
+    let temp = this.props.services_pending.filter(item => item._id == e)
     console.log(e)
 
     if (this.props.services_pending) {
@@ -171,7 +171,7 @@ class SelectiveSearch extends Component {
         let db = new PouchDB(sessionStorage.getItem('user'))
         db.get('Services').then((doc) => {
           console.log(doc)
-          let toBeAdded = doc.array.filter(item => item._id === e)
+          let toBeAdded = doc.array.filter(item => item._id == e)
           console.log(toBeAdded)
           this.props.dispatchAddToPendingServices(this.props.services_pending, toBeAdded[0])
           this.setState({search: '', suggestions: []})
@@ -207,18 +207,20 @@ class SelectiveSearch extends Component {
     return (
       <div className='selective_search'>
         <div className='search_box'>
+          <ul className='sugestions'>
+            <div className='sugestions_box'>
+              {this.displaySuggestions()}
+            </div>
+          </ul>
           <input ref='search' type='text' value={this.state.search} onChange={(e) => { this.search(e) }} placeholder='search' />
+
           <select onChange={(e) => { this.slectedSearchType(e) }}>
             <option value='Product'>Products</option>
             <option value='Service'>Service</option>
             <option value='Customer'>Customer</option>
           </select>
         </div>
-        <ul className='sugestions'>
-          <div className='sugestions_box'>
-            {this.displaySuggestions()}
-          </div>
-        </ul>
+
       </div>
     )
   }

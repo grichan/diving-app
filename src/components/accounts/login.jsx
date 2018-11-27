@@ -21,7 +21,6 @@ class LoginForm extends Component {
   };
 
   componentWillMount () {
-    // this.props.showSomeBoobies()
     cookie.remove('AuthSession')
   }
   componentDidMount () {
@@ -101,10 +100,11 @@ class LoginForm extends Component {
     return (
 
       <div className='login_form'>
-
+        <label for='username'>Username:</label>
         <input type='username' placeholder='Username'
           onChange={(e) => { this.setState({username: e.target.value.toLowerCase()}) }}
           value={this.state.username} />
+        <label for='password'>Password:</label>
         <input type='password' placeholder='Password'
           onChange={(e) => { console.log(this.passwordStrengthValidator(e.target.value)); this.setState({password: e.target.value}) }}
           value={this.state.password} />
@@ -115,7 +115,7 @@ class LoginForm extends Component {
         <button type='submit' onClick={this.newLogin.bind(this)} class='pure-button'>Login</button>
         <a href=''>Forgot Password?</a>
         <br />
-        <a href='/offline'>use offline</a>
+        <a href='/offline'>Offline mode</a>
 
       </div>
 
@@ -123,7 +123,7 @@ class LoginForm extends Component {
   }
 }
 function mapStateToProps (state) {
-  return {show: state.show}
+  return { show: state.show }
 }
 
 export default connect(mapStateToProps, actions)(LoginForm)

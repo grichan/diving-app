@@ -34,7 +34,7 @@ class Courses extends Component {
   };
   componentDidMount(){
     console.log(this.props.services.length);
-    if (this.props.services.length === 0) {
+    if (this.props.services.length == 0) {
       var localDB = new PouchDB(`${sessionStorage.getItem('user')}`, {skip_setup: true});
       localDB.get('Services').then((doc) => {
         //console.log('yea')
@@ -57,7 +57,7 @@ class Courses extends Component {
   }
   onOpenModal = (e) => {
     console.log(e.target.id);
-    let serviceForEdit = this.props.services.filter(item => item._id === e.target.id)
+    let serviceForEdit = this.props.services.filter(item => item._id == e.target.id)
     
     let days
     let hours

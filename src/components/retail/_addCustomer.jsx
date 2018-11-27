@@ -82,7 +82,6 @@ class AddCustomer extends Component {
       this.state.add_customer_phone &&
       this.state.add_customer_nationality
     ) {
-
       let user = sessionStorage.getItem('user')
       let db = new PouchDB(`${user}`)
 
@@ -200,11 +199,11 @@ class AddCustomer extends Component {
   clearFields () {
     this.setState({
 
-      add_customer_first_name: '',
-      add_customer_last_name: '',
-      add_customer_email: '',
-      add_customer_phone: '',
-      add_customer_nationality: ''
+      add_customer_name: '',
+      add_customer_storage_id: '',
+      add_customer_qty: '',
+      add_customer_price: '',
+      add_customer_brand: ''
 
     })
   }
@@ -216,29 +215,47 @@ class AddCustomer extends Component {
           <div className='modal_form_box'>
             <Alert className='alert' stack timeout={3000} />
             <h2>New Customer</h2>
-    First Name
-            <input type='text' onChange={(e) => { this.setState({add_customer_first_name: e.target.value}) }}
-              value={this.state.add_customer_name} />
-    Last Name
-            <input type='text' onChange={(e) => { this.setState({add_customer_last_name: e.target.value}) }}
-              value={this.state.add_customer_storage_id} />
 
-    Email
-            <input type='text' onChange={(e) => { this.setState({add_customer_email: e.target.value}) }}
-              value={this.state.add_customer_qty} />
+            <div className='modal_form_box_items'>
+              <label for='text'>First Name</label>
+              <input type='text' size='20' onChange={(e) => { this.setState({add_customer_first_name: e.target.value}) }}
+                value={this.state.add_customer_name} />
+            </div>
 
-     phone
-            <input type='text' onChange={(e) => { this.setState({add_customer_phone: e.target.value}) }}
-              value={this.state.add_customer_price} />
+            <div className='modal_form_box_items'>
+              <label for='text'>Last Name</label>
+              <input type='text' size='20' onChange={(e) => { this.setState({add_customer_last_name: e.target.value}) }}
+                value={this.state.add_customer_storage_id} />
+            </div>
 
-    Nationality
-            <input type='text' onChange={(e) => { this.setState({add_customer_nationality: e.target.value}) }}
-              value={this.state.add_customer_brand} />
-            <label htmlFor='card' className='pure-checkbox'>
-              <input id='diver' checked={this.state.diver_bool} onChange={() => { this.setState({diver_bool: !this.state.diver_bool}) }} type='checkbox' />Diver
-            </label>
-            <button onClick={this.addProduct.bind(this)}>Add</button>
-            <button onClick={this.clearFields.bind(this)}>Clear</button>
+            <div className='modal_form_box_items'>
+              <label for='text'>Email</label>
+              <input type='text' size='20' onChange={(e) => { this.setState({add_customer_email: e.target.value}) }}
+                value={this.state.add_customer_qty} />
+            </div>
+
+            <div className='modal_form_box_items'>
+              <label for='text'>Phone</label>
+              <input type='text' size='20' onChange={(e) => { this.setState({add_customer_phone: e.target.value}) }}
+                value={this.state.add_customer_price} />
+            </div>
+
+            <div className='modal_form_box_items'>
+              <label for='text'>Nationality</label>
+              <input type='text' size='20' onChange={(e) => { this.setState({add_customer_nationality: e.target.value}) }}
+                value={this.state.add_customer_brand} />
+            </div>
+
+            <div className='modal_form_box_items'>
+              <label htmlFor='card' className='pure-checkbox'>
+                <input id='diver' checked={this.state.diver_bool} onChange={() => { this.setState({diver_bool: !this.state.diver_bool}) }} type='checkbox' />Diver
+              </label>
+            </div>
+            <br />
+            <div className='button_group'>
+              <button onClick={this.addProduct.bind(this)}>Add</button>
+              <button onClick={this.clearFields.bind(this)}>Clear</button>
+            </div>
           </div>
         </div>
       </div>

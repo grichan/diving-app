@@ -173,7 +173,9 @@ class Refill extends Component {
   }
 
   render () {
-    if (!sessionStorage.getItem('Auth')) {
+    if (sessionStorage.getItem('offline') == 'true') {
+
+    } else if (sessionStorage.getItem('Auth') == 'false' || !sessionStorage.getItem('Auth')) {
       return <Redirect to='/signup' />
     }
     return (

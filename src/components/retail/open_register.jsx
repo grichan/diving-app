@@ -16,6 +16,7 @@ import AppNavigation from '../header';
 import AddProduct from './_addProduct';
 import AddCustomer from './_addCustomer';
 import SelectiveSearch from './selective_search';
+import './retail.css'
 
 // 3d-party
 import PouchDB from 'pouchdb';
@@ -130,7 +131,7 @@ changeProductQty(id,itemId,qty){
     console.log(itemId)
     if (this.props.pending_products) {
         let item = this.props.pending_products.find((item) => {
-            if (item._id === itemId) {
+            if (item._id == itemId) {
             return item
             } else return null
         })
@@ -154,7 +155,7 @@ changeServiceQty(id,itemId,qty){
     console.log(itemId)
     if (this.props.pending_services) {
         let item = this.props.pending_services.find((item) => {
-            if (item._id === itemId) {
+            if (item._id == itemId) {
             return item
             } else return null
         })
@@ -190,7 +191,7 @@ changeProductDisc(id,itemId,qty){
     console.log(itemId)
     if (this.props.pending_products) {
         let item = this.props.pending_products.find((item) => {
-            if (item._id === itemId) {
+            if (item._id == itemId) {
             return item
             } else return null
         })
@@ -210,7 +211,7 @@ changeServiceDisc(id,itemId,qty){
     console.log(itemId)
     if (this.props.pending_services) {
         let item = this.props.pending_services.find((item) => {
-            if (item._id === itemId) {
+            if (item._id == itemId) {
             return item
             } else return null
         })
@@ -238,7 +239,7 @@ finalizeOrder(e) {
         let date_id = new Moment().unix()
 
         let orderProducts = []
-        this.props.pending_products.foreach((item) =>{
+        this.props.pending_products.forEach((item) =>{
             this.qtyCheck(item)
             orderProducts.push({
                 "_id" : `${item._id}`,
@@ -344,7 +345,7 @@ updateProductQty(product) {
 
     let doc = this.getDbDoc(docName).then((res)=>{
         if (res) {
-            let updateProduct = res.array.filter(item => item._id === product._id)
+            let updateProduct = res.array.filter(item => item._id == product._id)
             updateProduct.qty = product.qty - product.qtyToBuy
             let arr = res.array.filter(item => item._id !== product._id)
             arr.push(updateProduct)
@@ -455,11 +456,12 @@ calculateSubtotal() {
     let serviceSub = 0
     let productSub = 0
     console.log(sub)
-    if (array !== undefined) {
-        if (this.props.pending_products) {
+    if (array != null) {
+        if (this.props.pending_products != null) {
             for (let item of this.props.pending_products) {
+                console.log('item:',item)
                 let price = item.price
-                if (item.price[0] === '$') {
+                if (item.price[0] == '$') {
                     price = item.price.slice(1)
                 }
                 let discountedValue = (parseFloat(item.discount) / 100) * price
@@ -469,8 +471,9 @@ calculateSubtotal() {
         }
         if (this.props.pending_services) {
             for (let item of this.props.pending_services) {
+                console.log('item:',item)
                 let price = item.price
-                if (item.price[0] === '$') {
+                if (item.price[0] == '$') {
                     price = item.price.slice(1)
                 }
                 let discountedValue = (parseFloat(item.discount) / 100) * price
@@ -615,14 +618,14 @@ servicesToTable(){
             }
 }
 alertTrigger () {
-    Alert.success('<h4>Success</h4>Checkout complete.', {
+    Alert.success('<h4>Success</h4>Transaction recorded.', {
       position: 'bottom-right',
       effect: 'flip',
       html: true
     })
   }
   alertTriggerEmptyForm () {
-Alert.error('<h4>Empty Fields</h4>', {
+Alert.error('<h4>Missing Products</h4>', {
     position: 'bottom-right',
     effect: 'jelly',
     html: true
@@ -630,10 +633,7 @@ Alert.error('<h4>Empty Fields</h4>', {
 }
   
 render() {
-    if (!sessionStorage.getItem('Auth')) {
-    cookie.remove('AuthSession', { path: '/' })
-        return <Redirect to='/signup' />
-      }
+ 
     const columnsProducts = [
         {
           Header: 'Id',
@@ -790,19 +790,24 @@ return (
                            <input type="number"  value={this.state.recivedAmount} 
                               onChange={(e)=>{this.recivedAmount(e)}}/>
                         </div>
-                        <h2>TOTAL: {this.calculateSubtotal()}
-                           <button className='button_secondary pure-button' 
-                              onClick={(e) => {this.finalizeOrder(e)}} id='button_finalize'>Checkout</button>
-                        </h2>
+                        <div className='total'>
+                            <h2>TOTAL: {this.calculateSubtotal()}</h2>
+                            <button className='button_secondary pure-button ripple' 
+                                onClick={(e) => {this.finalizeOrder(e)}} id='button_finalize'>Checkout</button>
+                        </div>
+                          
                         <div className='card_payment'>
                            <label htmlFor="card" className="pure-checkbox">
                            <input id="card"  checked = {this.state.card_bool} onChange={()=>{this.setState({card_bool: !this.state.card_bool})}} type="checkbox"/>Card Payment
                            </label>
                         </div>
+                        <div className='textArea'>
                         <textarea value={this.state.comments} onChange={(e)=>{this.setState({comments: e.target.value})}} placeholder='Optional Comments' rows="3" cols="20">
-
-                        </textarea>
-                        <p>Change: {this.calculateChange()}</p>
+                        </textarea>                        
+                        </div>
+                        <div className='change'>
+                            <p>Change: {this.calculateChange()}</p>                        
+                        </div>
 
                         <div className='button_group'>
                            <button>Print</button> 

@@ -35,11 +35,14 @@ class Dashboard extends Component {
 
   componentDidMount () {
     let user = sessionStorage.getItem('user')
+    localStorage.setItem(`_pouch_${user}`, user);
+
     PouchDB.replicate(`http://localhost:5984/${user}`, `${user}`).then(() => {
       this.setState({ loaded: true })
     }).catch((err)=>{
-      if (err.status == 401) {
+      if (err.status == 401 || 500) {
         sessionStorage.removeItem('Auth');
+        <Redirect to='/signup' />
       }
     })
   }
@@ -56,6 +59,7 @@ onCloseModal = () => {
     let date = new moment().format('YYYY')
     let docName = 'Events-' + date
     this.getDbDoc(docName).then((doc) => {
+      console.log(doc.array)
       let array = doc.array.sort((a, b) => {
         var x = moment(a.start).unix()
         var y = moment(b.start).unix()
@@ -63,11 +67,26 @@ onCloseModal = () => {
       })
       array = doc.array.filter(item => moment(item.start).unix() > moment().unix())
       array = array.slice(0, 10)
-
-      this.setState({
-        upcomingEvents: array
-      })
       console.log(array)
+      
+      this.setState({
+        upcomingEvents: array,
+        loaded: true
+      })
+      console.log('arrayyyy', array)
+    }).catch((err) => {
+      console.log('Placing Order Error')
+      if (err.status == 404) {
+        console.log('Missing Document')
+        var doc = { // if doc missing create one
+          '_id': `${docName}`,
+          'array': []
+        }
+        let db = new PouchDB(`${sessionStorage.getItem('user')}`)
+        db.put(doc)
+        console.log('Added Document')
+        this.getUpcomingEvents() // retry function
+      }
     })
   }
 
@@ -76,13 +95,14 @@ onCloseModal = () => {
     return db.get(docName).then((doc) => {
       console.log('getDbDoc:Fetching doc')
       return doc
-    }).catch('error', function (err) {
-      console.log(err)
+    }).catch((err) => {
       console.log('Error Getting Doc')
+      console.log(err)
     })
   }
 
   upcomingEventsToTable () {
+    console.log('Upcoming Events', this.state.upcomingEvents)
     if (this.state.upcomingEvents) {
       return this.state.upcomingEvents.map(element => {
         console.log('iterated')
@@ -94,8 +114,13 @@ onCloseModal = () => {
   }
 
   render () {
-    if (sessionStorage.getItem('Auth') == 'false' || !sessionStorage.getItem('Auth')) {
+
+    if (sessionStorage.getItem('offline') == 'true') {
+
+    } else if (sessionStorage.getItem('Auth') == 'false') {
       return <Redirect to='/signup' />
+    } else if (!sessionStorage.getItem('Auth')) {
+      return <Redirect to='/signup' />      
     } else if (!this.state.loaded) {
       return (
         <div id='loading_box'>
@@ -150,9 +175,11 @@ onCloseModal = () => {
 
             <div className='dashboard_container'>
               <div className='dashboard_box'>
-                <img src='' alt='' />
-                <h1>Income/Expences</h1>
-            <button onClick={this.onOpenModal}>Add New Customer</button>
+                <div className='add_customers'>
+                  <img src='' alt='' />
+                  <h1>Customer quick add</h1>
+                  <button className='ripple' onClick={this.onOpenModal}>Add New Customer</button>
+                </div>
               </div>
               <div className='dashboard_box'>
                 <img src='' alt='' />

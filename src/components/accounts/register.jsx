@@ -83,7 +83,7 @@ export default class Register extends Component {
   }
 
   createUserDb (username) {
-    let nano = require('nano')('http://root:wake13@localhost:5984/')
+    let nano = require('nano')('http://anna:secret@localhost:5984/')
     // CREATE THE DATABASE
     return nano.db.create(username, function (err, body) {
       if (!err) {
@@ -96,7 +96,7 @@ export default class Register extends Component {
 
   createUserDbSecurityParam (username) {
     // SET SECURITY PARAMS - access to db
-    let nano = require('nano')(`http://root:wake13@localhost:5984/${username}`)
+    let nano = require('nano')(`http://anna:secret@localhost:5984/${username}`)
 
     return nano.insert({
       admins: { 'names': [], 'roles': [] },
@@ -130,15 +130,19 @@ export default class Register extends Component {
   render () {
     return (
       <div className='register_form'>
+        <label for='Username'>Username:</label>
         <input type='text' placeholder='Username'
           onChange={(e) => { this.setState({username: e.target.value}) }}
           value={this.state.username} />
+        <label for='email'>Email address:</label>
         <input type='email' placeholder='Email'
           onChange={(e) => { this.setState({email: e.target.value}) }}
           value={this.state.email} />
+        <label for='password'>Password:</label>
         <input type='password' placeholder='Password'
           onChange={(e) => { console.log(this.passwordStrengthValidator(e.target.value)); this.setState({password: e.target.value}) }}
           value={this.state.password} />
+        <label for='male'>Retype your password:</label>
         <input type='password' placeholder='Re-Enter Password'
           onChange={(e) => { this.setState({password_confirm: e.target.value}) }}
           value={this.state.password_confirm} />

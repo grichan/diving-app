@@ -12,21 +12,35 @@ import Fade from 'react-reveal/Fade'
 import { LineChart, Line, CartesianGrid, XAxis,
   YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 
-const columns = [{
-  Header: 'Date',
-  id: 'date',
-  accessor: d => Moment.unix(d.date).format('HH:mm , Do/MM/YYYY dd  ')
-}, {
-  Header: 'Id',
-  accessor: 'id' // String-based value accessors!
-}, {
-  Header: 'Card',
-  id: 'card',
-  accessor: d => d.card ? 'yes' : 'no' // String-based value accessors!
-}, {
-  Header: 'Total',
-  accessor: 'total' // String-based value accessors!
-}]
+const columns = [
+//   {
+//   Header: 'Date',
+//   id: 'date',
+//   accessor: d => Moment.unix(d.date).format('HH:mm , Do/MM/YYYY dd'),
+//   render: ({d}) => <span>{'hi'}</span>
+// },
+  {
+    Header: 'Date',
+    accessor: 'date',
+    sortMethod: (a, b) => {
+      if (a == b) {
+        return a > b ? 1 : -1
+      }
+      return a > b ? 1 : -1
+    },
+    Cell: row => (
+      <div>
+        {Moment.unix(row.value).format('HH:mm , Do/MM/YYYY dd')}
+      </div>
+    )
+  }, {
+    Header: 'Card',
+    id: 'card',
+    accessor: d => d.card ? 'yes' : 'no' // String-based value accessors!
+  }, {
+    Header: 'Total',
+    accessor: 'total' // String-based value accessors!
+  }]
 
 class History extends Component {
   constructor (props) {
@@ -188,6 +202,7 @@ class History extends Component {
                         <Tooltip />
                       </LineChart>
                     </ResponsiveContainer>
+                    <label htmlFor=''>Sales today</label>
                   </div>
 
                 </div>
@@ -202,6 +217,7 @@ class History extends Component {
                       <Tooltip />
                     </LineChart>
                   </ResponsiveContainer>
+                  <label htmlFor=''>Sales this month</label>
                 </div>
               </div>
             </div>
@@ -210,6 +226,12 @@ class History extends Component {
               <ReactTable
                 data={this.state.data}
                 columns={columns}
+                defaultSorted={[
+                  {
+                    id: 'date',
+                    desc: true
+                  }
+                ]}
                 defaultPageSize={10}
                 className='-striped -highlight'
                 SubComponent={

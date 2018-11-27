@@ -32,10 +32,26 @@ class Products extends Component {
       edit_prooduct_description: '',
       currentlyEditing: ''
     }
+    
+  // class Product{
+  //   constructor(){
+  //     this.qty = ''
+  //     this.name = ''
+  //     this.storage_id = ''
+  //     this.price = ''
+  //     this.brand = ''
+  //     this.supplier = ''
+  //     this.categories = ''
+  //     this.edit_prooduct_description = ''
+  //   }
+
+  // }
   };
+
+
   componentDidMount(){
     console.log(this.props.products.length);
-    if (this.props.products.length === 0) {
+    if (this.props.products.length == 0) {
       var localDB = new PouchDB(`${sessionStorage.getItem('user')}`, {skip_setup: true});
       localDB.get('Products').then((doc) => {
         //console.log('yea')
@@ -54,16 +70,15 @@ class Products extends Component {
   }
   editProduct () {
     console.log('Click')
-    
   }
   onOpenModal = (e) => {
     console.log(e.target.id);
-    let productForEdit = this.props.products.filter(item => item._id === e.target.id)
+    let productForEdit = this.props.products.filter(item => item._id == e.target.id)
     this.setState({
       edit_product_qty: productForEdit[0].qty,
       edit_product_name: productForEdit[0].name,
       edit_product_storage_id: productForEdit[0].storeId,
-      edit_product_price: productForEdit[0].price,
+      edit_product_price: productForEdproductsit[0].price,
       edit_product_brand: productForEdit[0].brand,
       edit_product_supplier: productForEdit[0].supplier,
       edit_product_categories: productForEdit[0].categories,
@@ -139,7 +154,7 @@ class Products extends Component {
         _rev: doc._rev,
         array: arr
       })
-      this.onCloseModal()
+      this.onCloseModal1()
       return edditing
     })
     .catch((err) => {
@@ -219,7 +234,7 @@ class Products extends Component {
 
 
         <Modal classNames='modal_edit_products'  open={this.state.open} onClose={this.onCloseModal} center>
-        <div className='modal_form_box'>
+        <div className='modal_form_box eddit_products'>
     Name
             <input type='text' onChange={(e) => { this.setState({edit_product_name: e.target.value}) }}
               value={this.state.edit_product_name} />

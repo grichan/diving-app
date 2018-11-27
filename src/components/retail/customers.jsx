@@ -64,7 +64,7 @@ class Customers extends Component {
   }
   onOpenModal = (e) => {
     console.log(e.target.id);
-    let productForEdit = this.props.customers.filter(item => item._id === e.target.id)
+    let productForEdit = this.props.customers.filter(item => item._id == e.target.id)
     this.setState({
       edit_service_id:productForEdit[0]._id,
       edit_service_first_name: productForEdit[0].first_name,
@@ -176,6 +176,7 @@ class Customers extends Component {
   
 
   render () {
+
     const columns = [
       {
         Header: 'Id',

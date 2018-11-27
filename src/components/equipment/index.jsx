@@ -4,6 +4,7 @@ import {Redirect} from 'react-router-dom'
 import Search from '../search'
 import Header from '../header'
 // import CalendarHeader from './header'
+import './equipment.css'
 
 import {connect} from 'react-redux'
 import {updateStorageArray} from '../../actions'
@@ -107,7 +108,7 @@ onCloseAddEquipment = (arr) => {
 
 onOpenModalEdditEquipment = (e) => {
   console.log( e.target.id)
-  let item = this.state.selectedStorage.array.filter(item => item.id === e.target.id)
+  let item = this.state.selectedStorage.array.filter(item => item.id == e.target.id)
   this.setState({ 
     equipmentId: item['0'].id,
     equipmentName: item['0'].name,
@@ -129,7 +130,7 @@ onCloseEdditEquipment = (arr) => {
       };
   onOpenModalEdit = (e) => {
     if (this.props.storages) {
-      let curentlyEdditing = this.props.storages.filter(item => item._id === e.target.id)
+      let curentlyEdditing = this.props.storages.filter(item => item._id == e.target.id)
       console.log(curentlyEdditing)
       this.setState({ 
         
@@ -175,14 +176,16 @@ onCloseEdditEquipment = (arr) => {
     if (this.props.storages) {
       return this.props.storages.map(item => {
         return (
-        <li>
+          <div className='storages_item_box' onClick={(event) => this.viewStorage(item._id)}>
+          <li>
           <div className='info' onClick={(event) => this.viewStorage(item._id)}>
               <div  className='storage_name'>{item.name}</div>
               <div  className='storage_total'  >{item.array.length?item.array.length : '0'} <FaCube size='20' /></div>
           </div>
             <div className='storage_disc'>{item.desc}</div>
             <button id={item._id} onClick={(e)=>{this.onOpenModalEdit(e)}}>Edit</button>
-        </li>
+          </li>
+          </div>
       )}
       )
     }
@@ -214,7 +217,7 @@ onCloseEdditEquipment = (arr) => {
 
   viewStorage(e){
     console.log(e)
-    let selected = this.props.storages.filter(item => item._id === e)
+    let selected = this.props.storages.filter(item => item._id == e)
     this.setState({
       selectedStorage: selected["0"]
     },()=>console.log('SelectedStorage:', this.state.selectedStorage ))
@@ -440,15 +443,14 @@ onCloseEdditEquipment = (arr) => {
   }
 
   render () {
-    if (!sessionStorage.getItem('Auth')) {
+    if (sessionStorage.getItem('offline') == 'true') {
+
+    } else if (sessionStorage.getItem('Auth') == 'false' || !sessionStorage.getItem('Auth')) {
       return <Redirect to='/signup' />
     }
 
     const columns = [
-      {
-        Header: 'id',
-        accessor: 'id'
-      }, {
+       {
         Header: 'name',
         accessor: 'name'
       }, {
@@ -489,7 +491,7 @@ onCloseEdditEquipment = (arr) => {
           <Modal classNames='modal_add_products'  open={this.state.open} onClose={this.onCloseModal} center>
           <div className='modal_inner_box'>
             <h1>Add storage</h1>
-            Storage Name<input  type="text" value={this.state.storageName} 
+            Storage Name<input autoFocus  type="text" value={this.state.storageName} 
               onChange={(e)=>{this.setState({storageName: e.target.value})}}/>
             Description: <textarea rows="4" cols="50" type="text" value={this.state.storageDiscription} 
               onChange={(e)=>{this.setState({storageDiscription: e.target.value})}}/>
@@ -500,19 +502,21 @@ onCloseEdditEquipment = (arr) => {
         <Modal classNames='modal_add_products'  open={this.state.openEdit} onClose={this.onCloseModalEdit} center>
           <div className='modal_inner_box'>
             <h1>Edit storage</h1>
-            Storage Name<input  type="text" value={this.state.storageName} 
+            Storage Name<input autoFocus  type="text" value={this.state.storageName} 
               onChange={(e)=>{this.setState({storageName: e.target.value})}}/>
             Description: <textarea rows="4" cols="50" type="text" value={this.state.storageDiscription} 
               onChange={(e)=>{this.setState({storageDiscription: e.target.value})}}/>
-            <button type='submit' id='addEvent' onClick={(e)=>{this.deleteStorageClick(e)}}>Delete</button>
-            <button type='submit' id='addEvent' onClick={(e)=>{this.updateStorageClick(e)}}>Save</button>
+              <div className='buttons_box'>
+              <button type='submit' id='addEvent' onClick={(e)=>{this.deleteStorageClick(e)}}>Delete</button>
+              <button type='submit' id='addEvent' onClick={(e)=>{this.updateStorageClick(e)}}>Save</button>
+              </div>
             </div>
         </Modal>  
   
         <Modal classNames='modal_add_products'  open={this.state.openAddEquipment} onClose={this.onCloseAddEquipment} center>
           <div className='modal_inner_box'>
             <h1>Add Equipment</h1>
-            Equpment Name<input  type="text" value={this.state.equipmentName} 
+            Equpment Name<input autoFocus  type="text" value={this.state.equipmentName} 
               onChange={(e)=>{this.setState({equipmentName: e.target.value})}}/>
             Quantity <input  type="number" value={this.state.equipmentQty} 
               onChange={(e)=>{this.setState({equipmentQty: e.target.value})}}/>
@@ -531,7 +535,7 @@ onCloseEdditEquipment = (arr) => {
                <Modal classNames='modal_edit_products'  open={this.state.openEdditEquipment} onClose={this.onCloseEdditEquipment} center>
           <div className='modal_inner_box'>
             <h1>Edit Equipment</h1>
-            Equpment Name<input  type="text" value={this.state.equipmentName} 
+            Equpment Name<input autoFocus type="text" value={this.state.equipmentName} 
               onChange={(e)=>{this.setState({equipmentName: e.target.value})}}/>
             Quantity <input  type="number" value={this.state.equipmentQty} 
               onChange={(e)=>{this.setState({equipmentQty: e.target.value})}}/>
@@ -543,8 +547,10 @@ onCloseEdditEquipment = (arr) => {
               onChange={(e)=>{this.setState({equipmentSerial: e.target.value})}}/>  
             Description: <textarea rows="4" cols="50" type="text" value={this.state.equipmentDiscription} 
               onChange={(e)=>{this.setState({equipmentDiscription: e.target.value})}}/>
-            <button type='submit' id='delete' onClick={(e)=>{this.deleteEquipmentToStorage(e)}}>Delete</button>
-            <button type='submit' id='addEvent' onClick={(e)=>{this.updateEquipmentToStorage(e)}}>Save</button>
+              <div className='buttons_box'>
+              <button type='submit' id='delete' onClick={(e)=>{this.deleteEquipmentToStorage(e)}}>Delete</button>
+              <button type='submit' id='addEvent' onClick={(e)=>{this.updateEquipmentToStorage(e)}}>Save</button>
+              </div>
             </div>
         </Modal>  
 
@@ -563,10 +569,12 @@ onCloseEdditEquipment = (arr) => {
                       </div>  
             </div>
             <div className='storage_conents'>
+            <div className='upper_storage_contents'>
             <h2>Sotrage Equipment</h2>
             <button onClick={this.onOpenModalEquipment}>Add Equipment to storage</button>
+            </div>
               <ReactTable
-                      data={this.state.selectedStorage.array}
+                      data={this.state.selectedStorage? this.state.selectedStorage.array : ''}
                       columns={columns}
                       defaultPageSize={10}
                       minRows={5}

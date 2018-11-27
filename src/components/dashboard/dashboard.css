@@ -17,6 +17,25 @@
     
 }
 
+.dashboard_box .add_customers {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.dashboard_box .add_customers h1{
+    font-family: Roboto;
+    color: #5C6BC0;
+    width: 100%;
+}
+
+.dashboard_box .add_customers button{
+    font-size: 20px;
+    text-decoration: none;
+}
+
 .dashboard_box  .recharts-wrapper {
     width: inherit!important;
     display: flex!important;

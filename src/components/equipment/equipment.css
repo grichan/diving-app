@@ -91,27 +91,46 @@
     display: flex;
     align-items: center;
     flex-direction: column;
+}
 
+.storage:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }
 
 .existing_storage li{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 0.1vw;
+    margin: 0.5vw;
+}
+
+.existing_storage li:hover {
+  
+}
+
+.storages_item_box li:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    cursor: pointer;
 }
 
 .existing_storage li button{
-    font-size: calc(12px + 0.2vw);
+    font-size: calc(12px + 0.1vw);
     text-transform: capitalize;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background: #CFCFCD;
-    border-radius: 5px;
     color: rgb(255, 255, 255);
-    border:none;
     text-transform: uppercase;
+    padding: 3px;
+    align-self: flex-end;
 }
 
+.existing_storage li button:hover {
+    color: #26A69A;
+    transition: 1s color;
+}
 
 
 .info {
@@ -146,6 +165,60 @@
     height: 100%;
 }
 
+.upper_storage_contents button {
+    margin: 3vw;
+}
+
+.upper_storage_contents h2 {
+    text-align: center;
+    font-family: Roboto;
+    color: #26A69A;
+    font-size: calc(12px + 1vw);
+    margin: 1vh;
+    text-transform: uppercase;
+}
+
 .storage_conents .ReactTable {
     width: 50vw!important;
+}
+
+button:hover {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+
+.modal_inner_box .buttons_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.modal_inner_box .buttons_box button{
+    margin: 0 0 0 0.5vw;
+}
+
+.modal_inner_box .buttons_box button:first-child{
+    margin: 0.5vw;
+    background-color: #c62828;
+    color: #fff;
+}
+
+
+
+.modal_rental_edit {
+    width: 30vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons_edit_rental {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+}
+
+.buttons_edit_rental button:last-child{
+    background-color: #c62828;
+    color: #fff;
 }

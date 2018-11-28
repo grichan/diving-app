@@ -32,23 +32,7 @@ class Products extends Component {
       edit_prooduct_description: '',
       currentlyEditing: ''
     }
-    
-  // class Product{
-  //   constructor(){
-  //     this.qty = ''
-  //     this.name = ''
-  //     this.storage_id = ''
-  //     this.price = ''
-  //     this.brand = ''
-  //     this.supplier = ''
-  //     this.categories = ''
-  //     this.edit_prooduct_description = ''
-  //   }
-
-  // }
   };
-
-
   componentDidMount(){
     console.log(this.props.products.length);
     if (this.props.products.length == 0) {
@@ -70,6 +54,7 @@ class Products extends Component {
   }
   editProduct () {
     console.log('Click')
+    
   }
   onOpenModal = (e) => {
     console.log(e.target.id);
@@ -78,7 +63,7 @@ class Products extends Component {
       edit_product_qty: productForEdit[0].qty,
       edit_product_name: productForEdit[0].name,
       edit_product_storage_id: productForEdit[0].storeId,
-      edit_product_price: productForEdproductsit[0].price,
+      edit_product_price: productForEdit[0].price,
       edit_product_brand: productForEdit[0].brand,
       edit_product_supplier: productForEdit[0].supplier,
       edit_product_categories: productForEdit[0].categories,

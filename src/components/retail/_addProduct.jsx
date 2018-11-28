@@ -8,89 +8,23 @@ import 'react-s-alert/dist/s-alert-css-effects/jelly.css'
 import {connect} from 'react-redux'
 import {addProduct} from '../../actions'
 
-// class Product {
-//   constructor () {
-//     this.product = {}
-//     this.addProduct = function (state) {
-//       console.log('Adding Project')
-//       let dateId = new Moment().unix()
-//       this.product = {
-//         _id: dateId,
-//         qty: state.product_qty_field,
-//         name: state.product_name_field,
-//         storeId: state.product_storage_id_field,
-//         price: state.product_price_field,
-//         brand: state.product_brand_field,
-//         supplier: state.product_supplier_field,
-//         categories: state.product_categories_field,
-//         discripton: state.prooduct_description_field
-//       }
-//       const con = new DatabaseConnection(window.sessionStorage.getItem('user'))
-//       con.updateDocument('Products', this.product)
-//         .then((newProduct) => {
-//         // IF SUCCESS
-//           console.log(this)
-//           // this.alertSuccessTrigger()
-//           // AddProduct.props.dispatchAddProduct(AddProduct.props.products, newProduct)
-//           // this.clearFields()
-//         }).catch((err) => {
-//           if (err.status === 404) {
-//           // IF FAIL
-//             console.log('Missing Document')
-//             let doc = {
-//               '_id': `Products`,
-//               'array': []
-//             }
-//             this.db.put(doc)
-//             console.log('Added Document')
-//             this.updateDocument('Products', this.product)
-//           }
-//           console.log(err)
-//         })
-//     }
-//   }
-// }
-
-// class DatabaseConnection {
-//   constructor (user) {
-//     this.db = new PouchDB(`${user}`)
-
-//     this.updateDocument = function (docName, data) {
-//       this.db.get(docName).then((doc) => {
-//         this.db.put({
-//           _id: 'Products',
-//           _rev: doc._rev,
-//           array: doc.array.push(data)
-//         })
-//         return data
-//       })
-//     }
-//   }
-// }
-
-// const newProducts = new Product()
-
-class AddProduct extends Component { // COMPONENT
+class AddProduct extends Component {
   constructor (props) {
     super(props)
-    //    this.newProduct = new Product()
+
     this.state = {
-      product_qty_field: '',
-      product_name_field: '',
-      product_storage_id_field: '',
-      product_price_field: '',
-      product_brand_field: '',
-      product_supplier_field: '',
-      product_categories_field: '',
-      prooduct_description_field: ''
+      add_product_qty: '',
+      add_product_name: '',
+      add_product_storage_id: '',
+      add_product_price: '',
+      add_product_brand: '',
+      add_product_supplier: '',
+      add_product_categories: '',
+      add_prooduct_description: ''
     }
   };
-
   componentDidMount () {
     console.log(this.props.products)
-    console.log('state', this.state)
-    console.log('Main CLass', this)
-    // console.log(newProducts)
   }
   alertTrigger () {
     Alert.error('<h4>Please Fill Out All The Fields</h4>', {
@@ -108,18 +42,87 @@ class AddProduct extends Component { // COMPONENT
 
     })
   }
+  addProduct () {
+    console.log('clicked')
+    if (this.state.add_product_qty &&
+      this.state.add_product_name &&
+      this.state.add_product_storage_id &&
+      this.state.add_product_price &&
+      this.state.add_product_brand &&
+      this.state.add_product_supplier &&
+      this.state.add_product_categories &&
+      this.state.add_prooduct_description
+    ) {
+      let user = sessionStorage.getItem('user')
+      let db = new PouchDB(`${user}`)
+
+      // IF DOESNT EXIST CREATE ONE
+      // db.put({
+      //   _id: `${docName}`
+      // }).then(function (response) {
+      //   // handle response
+      // }).catch(function (err) {
+      //   console.log(err)
+      // })
+      let date_id = new Moment().unix()
+      var newProduct = {
+        _id: date_id,
+        qty: this.state.add_product_qty,
+        name: this.state.add_product_name,
+        storeId: this.state.add_product_storage_id,
+        price: this.state.add_product_price,
+        brand: this.state.add_product_brand,
+        supplier: this.state.add_product_supplier,
+        categories: this.state.add_product_categories,
+        discripton: this.state.add_prooduct_description
+      }
+
+      db.get(`Products`).then((doc) => {
+        console.log(doc)
+
+        var arr = doc.array
+        arr.push(newProduct)
+        console.log(arr)
+        db.put({
+          _id: 'Products',
+          _rev: doc._rev,
+          array: arr
+        })
+        return newProduct
+      }).then((newProduct) => {
+        this.alertSuccessTrigger()
+        this.props.dispatchAddProduct(this.props.products, newProduct)
+        this.clearFields()
+      }).catch((err) => {
+        if (err.status === 404) {
+          console.log('Missing Document')
+          var doc = {
+            '_id': `Products`,
+            'array': []
+          }
+          db.put(doc)
+          console.log('Added Document')
+          this.addProduct()
+        }
+        console.log(err)
+      })
+    } else {
+      this.alertTrigger()
+    }
+  }
 
   clearFields () {
     this.setState({
 
-      product_qty_field: '',
-      product_name_field: '',
-      product_storage_id_field: '',
-      product_price_field: '',
-      product_brand_field: '',
-      product_supplier_field: '',
-      product_categories_field: '',
-      prooduct_description_field: ''
+      add_product_qty: '',
+      add_product_name: '',
+      add_product_storage_id: '',
+      add_product_price: '',
+      add_product_brand: '',
+      add_product_supplier: '',
+      add_product_categories: '',
+      add_prooduct_description: ''
+
     })
   }
 
@@ -128,57 +131,57 @@ class AddProduct extends Component { // COMPONENT
       <div>
         <div className='modal_form'>
           <div className='modal_form_box'>
-            <div className='modal_products'>
+            <div className='modal_add_products'>
               <Alert className='alert' stack timeout={3000} />
               <h2>Add new Item to stock</h2>
 
               <div>
                 <label htmlFor='text'>Name</label>
-                <input type='text' onChange={(e) => { this.setState({product_name_field: e.target.value}) }}
-                  value={this.state.product_name_field} />
+                <input type='text' onChange={(e) => { this.setState({add_product_name: e.target.value}) }}
+                  value={this.state.add_product_name} />
               </div>
 
               <div >
                 <label htmlFor='text'>StorageId</label>
-                <input type='text' size='20' onChange={(e) => { this.setState({product_storage_id_field: e.target.value}) }}
-                  value={this.state.product_storage_id_field} />
+                <input type='text' size='20' onChange={(e) => { this.setState({add_product_storage_id: e.target.value}) }}
+                  value={this.state.add_product_storage_id} />
               </div>
 
               <label htmlFor='text'>Qty</label>
-              <input type='text' size='20' onChange={(e) => { this.setState({product_qty_field: e.target.value}) }}
-                value={this.state.product_qty_field} />
+              <input type='text' size='20' onChange={(e) => { this.setState({add_product_qty: e.target.value}) }}
+                value={this.state.add_product_qty} />
               <div />
 
               <div >
                 <label htmlFor='number'>Price for one</label>
-                <input type='number' onChange={(e) => { this.setState({product_price_field: e.target.value}) }}
-                  value={this.state.product_price_field} />
+                <input type='number' onChange={(e) => { this.setState({add_product_price: e.target.value}) }}
+                  value={this.state.add_product_price} />
               </div>
 
               <div >
                 <label htmlFor='text'>Brand Name</label>
-                <input type='text' onChange={(e) => { this.setState({product_brand_field: e.target.value}) }}
-                  value={this.state.product_brand_field} />
+                <input type='text' onChange={(e) => { this.setState({add_product_brand: e.target.value}) }}
+                  value={this.state.add_product_brand} />
               </div>
 
               <div >
                 <label htmlFor='text'>Supplier</label>
-                <input type='text' onChange={(e) => { this.setState({product_supplier_field: e.target.value}) }}
-                  value={this.state.product_supplier_field} />
+                <input type='text' onChange={(e) => { this.setState({add_product_supplier: e.target.value}) }}
+                  value={this.state.add_product_supplier} />
               </div>
 
               <div >
                 <label htmlFor='text'>Categories</label>
-                <input type='text' onChange={(e) => { this.setState({product_categories_field: e.target.value}) }}
-                  value={this.state.product_categories_field} />
+                <input type='text' onChange={(e) => { this.setState({add_product_categories: e.target.value}) }}
+                  value={this.state.add_product_categories} />
               </div>
 
               <div >
                 <label htmlFor='texarea'>Discription</label>
-                <textarea rows='4' cols='50' onChange={(e) => { this.setState({prooduct_description_field: e.target.value}) }} value={this.state.prooduct_description_field} />
+                <textarea rows='4' cols='50' onChange={(e) => { this.setState({add_prooduct_description: e.target.value}) }} value={this.state.add_prooduct_description} />
               </div>
 
-              {/* <button onClick={newProducts.addProduct(this.state)}>Add</button> */}
+              <button onClick={this.addProduct.bind(this)}>Add</button>
               <button onClick={this.clearFields.bind(this)}>Clear</button>
 
             </div>
@@ -204,8 +207,6 @@ const mapDispatch = (dispatch) => {
     }
   }
 }
-
-console.log(AddProduct)
 
 // Connect them:
 export default connect(mapState, mapDispatch)(AddProduct)

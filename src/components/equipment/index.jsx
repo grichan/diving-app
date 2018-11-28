@@ -574,7 +574,7 @@ onCloseEdditEquipment = (arr) => {
             <button onClick={this.onOpenModalEquipment}>Add Equipment to storage</button>
             </div>
               <ReactTable
-                      data={this.state.selectedStorage? this.state.selectedStorage.array : ''}
+                      data={this.state.selectedStorage.array}
                       columns={columns}
                       defaultPageSize={10}
                       minRows={5}

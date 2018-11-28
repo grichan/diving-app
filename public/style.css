@@ -151,6 +151,7 @@ body  {
 }
 
 .container_right {
+    margin: 0 calc(10px + 0.2vw);
     flex:12;
     
 }
@@ -169,6 +170,7 @@ body  {
     max-height: 60px;
     height: 20vh;
     padding: 0 2vw;
+    margin-left: -40px;
     flex-flow: wrap;
 }
 
@@ -239,13 +241,6 @@ body  {
     margin: 1vh;
     margin-top: 0;
     
-}
-
-/* ############################## CALENDAR ############################## */
-
-
-.calendar_holder .rbc-calendar {
-    height: 65vh;
 }
 
 
@@ -691,6 +686,31 @@ background: #fff;
     }
   }
 
+  /* Ripple effect */
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+  }
+  .ripple:hover {
+    background: #3B81B6 radial-gradient(circle, transparent 1%, #c0c0c0 1%) center/15000%;
+  }
+  .ripple:active {
+    background-color: #3B81B6;
+    background-size: 100%;
+    transition: background 3s;
+  }
+    
+  button {
+    border: none;
+    border-radius: 2px;
+    padding: 12px 18px;
+    font-size: 16px;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: white;
+    background-color: #dbdbdb;
+    outline: none;
+}
   
   
   .offline_users{
@@ -724,3 +744,102 @@ background: #fff;
      font-family: Roboto;
      font-size: calc(15px + 1vw);
   }
+
+.styles_modal__gNwvD .modal_form .modal_form_box .button_group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.styles_modal__gNwvD .modal_form .modal_form_box .modal_form_box_items {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+
+
+
+
+.modal_add_products {
+    display: flex;
+    flex-direction: column;
+    font-size: calc(12px + 0.5vw)
+}
+
+.modal_add_products div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.modal_add_products  {
+    font-size: calc(15px + 0.2vw);
+}
+
+
+
+
+
+.signup_controls {
+    min-height: 40px;
+}
+
+
+.rbc-current-time-indicator {
+    background-color: red!important;
+    height: 2px!important;
+}
+
+
+.offline {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    background: url(./images/turtle.jpg);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.offline_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    max-width: 600px;
+}
+
+.offline_users {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.offline_users li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.back_button {
+    align-self: baseline;
+}
+
+
+.offline_box h1, .offline_box p {
+    width: 100%;
+    color: #FAFAFA;
+    text-align: center;
+    font-family: Roboto;
+    margin: 5px;
+    text-shadow: 1px 1px #1b1b1b;
+}
+
+.offline_box h1 {
+    font-size:calc(12px + 4vw);
+}

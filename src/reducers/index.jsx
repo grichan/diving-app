@@ -7,6 +7,10 @@ import pending_customers from './pending_customers'
 import pending_services from './pending_services'
 import storages from './storages_reducer'
 import calendar from './calendar'
+import eqrent from './eqrent_reducer'
+import service_item_reducer from './service_item_reducer'
+import staff_reducer from './staff_reducer'
+import global from './global_reducer'
 
 const rootReducer = combineReducers({
   products,
@@ -16,7 +20,11 @@ const rootReducer = combineReducers({
   pending_customers,
   pending_services,
   calendar,
-  storages
+  storages,
+  service_item_reducer,
+  staff_reducer,
+  global,
+  eqrent
 })
 
 export default rootReducer

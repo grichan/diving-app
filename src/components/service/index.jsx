@@ -641,7 +641,7 @@ render () {
             <button onClick={this.onOpenModalService}>Add Service to service</button>
           </div>
             <ReactTable
-                    data={this.state.selectedServiceItem ? this.state.selectedServiceItem.array : []}
+                    data={this.state.selectedServiceItem.array ? this.state.selectedServiceItem.array : []}
                     columns={columns}
                     defaultPageSize={10}
                     minRows={5}

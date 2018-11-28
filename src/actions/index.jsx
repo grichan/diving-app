@@ -68,8 +68,12 @@ export function addToPendingServices (pendingState, newElement) {
 }
 
 export function addToPendingProducts (pendingState, newElement) {
-  newElement.discount = '0'
-  newElement.qtyToBuy = '1'
+  if (newElement) {
+    newElement.discount = '0'
+  }
+  if (newElement) {
+    newElement.qtyToBuy = '1'
+  }
   const newNoMutation = [newElement, ...pendingState]
   return {
     type: 'ADD_TO_PENDING_PRODUCTS',
@@ -92,6 +96,15 @@ export function updateToPendingServices (pendingState) {
     payload: newNoMutation
   }
 }
+
+export function updateToPendingEqService (pendingState) {
+  const newNoMutation = [...pendingState]
+  return {
+    type: 'UPDATE_TO_PENDING_SERVICES',
+    payload: newNoMutation
+  }
+}
+
 export function updateToPendingCustomers (pendingState) {
   const newNoMutation = [...pendingState]
   return {
@@ -128,6 +141,27 @@ export function addCalendarEvents (pendingState) {
   }
 }
 
+// EQ RENT
+
+export function addEqRent (pendingState, newElement) {
+  const newNoMutation = [newElement, ...pendingState]
+  return {
+    type: 'ADD_RENT',
+    payload: newNoMutation
+  }
+}
+
+export function addEqRentArray (pendingState) {
+  var newNoMutation = []
+  if (pendingState) {
+    newNoMutation = [...pendingState]
+  }
+  return {
+    type: 'ADD_RENT_ARRAY',
+    payload: newNoMutation
+  }
+}
+
 export function updateStorageArray (newArray) {
   var newNoMutation = []
   if (newArray) {
@@ -135,6 +169,44 @@ export function updateStorageArray (newArray) {
   }
   return {
     type: 'UPDATE_STORAGE_ARRAY',
+    payload: newNoMutation
+  }
+}
+
+export function updateServiceItemArray (newArray) {
+  var newNoMutation = []
+  if (newArray) {
+    newNoMutation = [...newArray]
+  }
+  return {
+    type: 'UPDATE_SERVICE_ITEM_ARRAY',
+    payload: newNoMutation
+  }
+}
+
+export function addServiceItem (pendingServices, newService) {
+  pendingServices.push(newService)
+  return {
+    type: 'ADD_SERVICE_ITEM',
+    payload: pendingServices
+  }
+}
+
+export function getStaffArray (newArray) {
+  var newNoMutation = []
+  if (newArray) {
+    newNoMutation = [...newArray]
+  }
+  return {
+    type: 'GET_STAFF_ARRAY',
+    payload: newNoMutation
+  }
+}
+
+export function expandedNav (newArray) {
+  var newNoMutation = newArray
+  return {
+    type: 'EXPANDED_NAV',
     payload: newNoMutation
   }
 }

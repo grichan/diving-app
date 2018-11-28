@@ -5,13 +5,6 @@
    768-480     - tablet 
    480-less    - phone landscape & smaller
 --------------------------------------------*/
-<<<<<<< HEAD
-@media all and (min-width: 1024px) and (max-width: 1280px) { }
- 
-@media all and (min-width: 768px) and (max-width: 1024px) { }
- 
-@media all and (min-width: 480px) and (max-width: 768px) { }
-=======
 @media all and (min-width: 1024px) and (max-width: 1280px) {
     .container_right { 
         margin-left: 80;
@@ -72,12 +65,29 @@
         display: none;
      }
  }
->>>>>>> Dist Commit
  
 @media all and (max-width: 480px) {
     .header .expandButton {
         font-size: 0;
     }
+    .header_box{
+        min-width: 60px!important;
+    }
+    .products_table, .services_table {
+        max-width: 280px; 
+    }
+    .rbc-calendar, .toolbar{
+        width: 75vw;
+    }
+    .rbc-toolbar {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .rbc-time-gutter .rbc-time-column {
+        width: 10px!important;
+    }
+    
  }
  
 

@@ -1,20 +1,7 @@
-const electron = require('electron');
+const electron = require('electron')
 
-const { app, BrowserWindow } = electron;
+const { app, BrowserWindow } = electron
 
-<<<<<<< HEAD
-let mainWindow;
-
-app.on('ready', ()=>{
-    mainWindow = new BrowserWindow({
-        height:600,
-        width:800,
-        webPreferances: { backgroundThrottling: false}
-    });
-    
-    mainWindow.loadURL('http://localhost:3000');
-})
-=======
 const path = require('path')
 const url = require('url')
 const isDev = require('electron-is-dev')
@@ -53,4 +40,3 @@ app.on('window-all-closed', function () {
     app.quit()
   }
 })
->>>>>>> Dist Commit

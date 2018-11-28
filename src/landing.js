@@ -14,14 +14,6 @@ export default class Landing extends Component {
     }
   }
 
-  componentDidMount () {
-  }
-  componentDidUpdate () {
-  }
-
-  click () {
-  }
-
   render () {
     return (
       <div className='landing' >

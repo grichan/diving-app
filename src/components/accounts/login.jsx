@@ -21,6 +21,7 @@ class LoginForm extends Component {
   };
 
   componentWillMount () {
+    // this.props.showSomeBoobies()
     cookie.remove('AuthSession')
   }
   componentDidMount () {

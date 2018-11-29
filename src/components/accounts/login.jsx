@@ -61,7 +61,7 @@ class LoginForm extends Component {
       })
     }).then(response => response.json())
       .then((data) => {
-        console.log(data)
+        console.log('response data:', data)
         cookie.save('AuthSession', data['token'])
         sessionStorage.setItem('user', usnm)
         sessionStorage.setItem('Auth', true)
@@ -70,8 +70,7 @@ class LoginForm extends Component {
         this.changePath(true, data['path'])
       }
       ).catch((err) => {
-        console.log('error occured')
-        console.log(err)
+        console.log('error occured:', err)
       })
   }
 

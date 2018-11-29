@@ -202,9 +202,9 @@ app.post('/api/login', function (request, response, next) {
     nano.auth(username, userpass, function (err, body, headers) {
       if (err) {
         if (err.status === 401 | 402) {
-          console.log('Username or Password Incorect')
+          console.log('########################## Username or Password Incorect ##########################')
           console.log(err)
-          response.send('Username or Password Incorect')
+          response.send('########################## Username or Password Incorect ##########################')
         } else {
           console.log('########################## Internal Error ##########################')
           console.log(err)

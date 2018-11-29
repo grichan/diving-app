@@ -148,7 +148,7 @@ class Products extends Component {
 
     
   }
-
+// sudo docker container run -it -p 5984:5984 apache/couchdb
   deleteProduct(){
     console.log('delete')
     var db = new PouchDB(`${sessionStorage.getItem('user')}`)

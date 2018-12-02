@@ -5,6 +5,8 @@ import Search from '../search'
 import AppNavigation from '../header'
 import AddProduct from './_addProduct'
 
+import {Connection} from '../../connection'
+
 // 3d PARTY
 import ReactTable from 'react-table'
 import 'react-table/react-table.css'
@@ -35,21 +37,14 @@ class Products extends Component {
   };
   componentDidMount(){
     console.log(this.props.products.length);
-    if (this.props.products.length == 0) {
-      var localDB = new PouchDB(`${sessionStorage.getItem('user')}`, {skip_setup: true});
-      localDB.get('Products').then((doc) => {
-        //console.log('yea')
-        console.log(doc.array)
-        return doc.array
-            //console.log(item);
-        }).then((res) => {
-          this.props.dispatchAddProductsArray(res).then(()=>{
-            return console.log(this.props.products.map((item)=>{return console.log(item)})) 
-            }) 
-        }).catch(function (err) {
-          //console.log(err);
-          });
-        //console.log(array);
+
+    if(this.props.products.length == 0) {
+      let conn = new Connection(sessionStorage.getItem('user'), true)
+       conn.getDocument('Products').then(doc => {
+          console.log('in prom', doc.array) 
+          let arr = doc.array        
+          this.props.dispatchAddProductsArray(arr)
+       })
     }
   }
   editProduct () {
@@ -148,7 +143,7 @@ class Products extends Component {
 
     
   }
-// sudo docker container run -it -p 5984:5984 apache/couchdb
+
   deleteProduct(){
     console.log('delete')
     var db = new PouchDB(`${sessionStorage.getItem('user')}`)

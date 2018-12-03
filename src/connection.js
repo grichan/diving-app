@@ -10,11 +10,22 @@ class Connection {
     if ((typeof doc) !== 'string') {
       throw new Error('Wrong type ')
     }
+    // returns promise returns new words
     return this.db.get(doc).then((doc) => {
       console.log(doc)
       return doc
     }).catch(function (err) {
       throw new Error('Error:', err)
+    })
+  }
+
+  createDocument (doc) {
+    return this.db.put(doc).then((res, err) => {
+      return true
+    }).catch((err) => {
+      if (err) {
+        return err
+      }
     })
   }
 }

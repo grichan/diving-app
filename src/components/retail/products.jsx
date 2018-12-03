@@ -34,13 +34,14 @@ class Products extends Component {
       edit_prooduct_description: '',
       currentlyEditing: ''
     }
+    this.conn = new Connection(sessionStorage.getItem('user'), true)
+
   };
   componentDidMount(){
     console.log(this.props.products.length);
 
     if(this.props.products.length == 0) {
-      let conn = new Connection(sessionStorage.getItem('user'), true)
-       conn.getDocument('Products').then(doc => {
+       this.conn.getDocument('Products').then(doc => {
           console.log('in prom', doc.array) 
           let arr = doc.array        
           this.props.dispatchAddProductsArray(arr)
@@ -83,30 +84,21 @@ class Products extends Component {
     
   getProducts () {
     // BY MONTH
-    var db = new PouchDB(`${sessionStorage.getItem('user')}`)
-    let date = new Moment().format('MM-YYYY')
-    let docName = date + '-orders'
     if (!this.props.products) {
-      // fetch Db
-      db.get('Products').then((doc) => {
-        console.log(doc.array)
+      this.conn.getDocument('Products').then(doc => {
         this.setState({
           data: doc.array
         })
-      }).then(() => {
-      // fetch mittens again
-        console.log('Complete!')
       }).catch((err) => {
-        console.log('Placing Order Error')
         if (err.status === 404) {
-          console.log('Missing Document')
-          var doc = { // if doc missing create one
+        let date = new Moment().format('MM-YYYY')
+        let docName = date + '-orders'
+        let doc = { 
             '_id': `${docName}`,
             'array': []
           }
-          db.put(doc)
-          console.log('Added Document')
-          this.getProducts() // retry function
+          this.conn.createDocument(doc)
+          this.getProducts()
         }
       })
     }
@@ -124,12 +116,11 @@ class Products extends Component {
     edditing.discripton = this.state.edit_prooduct_description 
     console.log(edditing);
 
-    var db = new PouchDB(`${sessionStorage.getItem('user')}`)
-    db.get(`Products`).then((doc) => {
+    this.conn.getDocument('Products').then((doc) => {
       var arr = doc.array.filter(item => item._id !== this.state.currentlyEditing[0]._id)
       console.log(arr)
       arr.push(edditing)
-      db.put({
+      this.conn.db.put({
         _id: 'Products',
         _rev: doc._rev,
         array: arr
